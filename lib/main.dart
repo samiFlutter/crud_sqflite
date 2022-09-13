@@ -1,8 +1,11 @@
 import 'package:crudsqflite/crud_sqflite.dart';
+import 'package:crudsqflite/crud_sqflite_2.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -15,10 +18,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const SqliteApp(),
     );
   }
 }
@@ -31,7 +33,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  CrudSqflite db =CrudSqflite();
+  CrudSqflite db = CrudSqflite();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,46 +41,37 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Center(child: Text("CRUD APP SQFLITE")),
       ),
       body: Container(
-            child: Center(
-              child: Column(
-
-                children: [
-                  OutlinedButton(
-                      onPressed: () async {
-                      db.createDB();
-
-                  }, child: Text('Create DB')),
-
-
-                  OutlinedButton(
-                      onPressed: () async {
-                        db.insertDB();
-
-                      }, child: Text('insert value ')),
-
-
-                  OutlinedButton(
-                      onPressed: () async {
-                      db.getDBall();
-
-                      }, child: Text('get value ')),
-
-
-                  OutlinedButton(
-                      onPressed: () async {
-
-                        db.updateDB();
-                      }, child: Text('update value ')),
-
-
-                  OutlinedButton(
-                      onPressed: () async {
-
-                        db.delete();
-                      }, child: Text('delete value ')),
-                ],
-              ),
-            ),
+        child: Center(
+          child: Column(
+            children: [
+              OutlinedButton(
+                  onPressed: () async {
+                    db.createDB();
+                  },
+                  child: Text('Create DB')),
+              OutlinedButton(
+                  onPressed: () async {
+                    db.insertDB();
+                  },
+                  child: Text('insert value ')),
+              OutlinedButton(
+                  onPressed: () async {
+                    db.getDBall();
+                  },
+                  child: Text('get value ')),
+              OutlinedButton(
+                  onPressed: () async {
+                    db.updateDB();
+                  },
+                  child: Text('update value ')),
+              OutlinedButton(
+                  onPressed: () async {
+                    db.delete();
+                  },
+                  child: Text('delete value ')),
+            ],
+          ),
+        ),
       ),
     );
   }
